@@ -1,0 +1,72 @@
+# main links
+main:
+  - title: "Posts"
+    url: /archive/
+  - title: "Categories"
+    url: /categories/
+  - title: "Tags"
+    url: /tags/
+  # - title: "About"
+  #   url: https://mmistakes.github.io/minimal-mistakes/about/
+  # - title: "Sample Posts"
+  #   url: /year-archive/
+  # - title: "Sample Collections"
+  #   url: /collection-archive/
+  # - title: "Sitemap"
+  #   url: /sitemap/
+
+sidebar:
+  - title: Diary
+    children:
+      - title: "회고"
+        url: /categories/diary
+        category: "diary"
+
+  - title: DL Basic
+    children:
+      - title: "Loss"
+        url: /categories/loss
+        category: "loss"
+
+  - title: Computer Vision
+    children:
+      - title: "Object Detection"
+        url: /categories/object_detection
+        category: "object_detection"
+
+      - title: "Segmentation"
+        url: /categories/segmentation
+        category: "segmentation"
+
+  - title: MLOps
+    children:
+      - title: "Basic"
+        url: /categories/MLOps-basic
+        category: "MLOps-basic"
+      - title: "Airflow"
+        url: /categories/MLOps-airflow
+        category: "MLOps-airflow"
+      - title: "CICD"
+        url: /categories/MLOps-cicd
+        category: "MLOps-cicd"
+      - title: "Serving"
+        url: /categories/MLOps-serving
+        category: "MLOps-serving"
+
+  - title: CS
+    children:
+      - title: "OS"
+        url: /categories/os
+        category: "os"
+      - title: "Network"
+        url: /categories/network
+        category: "network"
+
+  - title: TroubleShooting
+    children:
+      - title: "Pytorch"
+        url: /categories/troubleshooting-pytorch
+        category: "troubleshooting-pytorch"
+      - title: "Linux"
+        url: /categories/troubleshooting-linux
+        category: "troubleshooting-linux"
