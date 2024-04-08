@@ -24,22 +24,42 @@ sidebar:
 
   - title: DL Basic
     children:
+      - title: "AI Math"
+        url: /categories/math
+        category: "math"
       - title: "Deep Learning"
         url: /categories/deep_learning
         category: "deep_learning"
       - title: "Loss"
         url: /categories/loss
         category: "loss"
+      - title: "Optimizer & Scheduler"
+        url: /categories/optim-scheduler
+        category: "optim-scheduler"
+      - title: "CNN"
+        url: /categories/cnn
+        category: "cnn"
+      - title: "RNN"
+        url: /categories/rnn
+        category: "rnn"
+      - title: "Transformer"
+        url: /categories/transformer
+        category: "transformer"
 
   - title: Computer Vision
     children:
       - title: "Object Detection"
         url: /categories/object_detection
         category: "object_detection"
-
       - title: "Segmentation"
         url: /categories/segmentation
         category: "segmentation"
+      - title: "OCR"
+        url: /categories/ocr
+        category: "ocr"
+      - title: "Vision Transformer"
+        url: /categories/vit
+        category: "vit"
 
   - title: MLOps
     children:

@@ -560,3 +560,12 @@ body {
     }
   }
 }
+
+img + em {
+  display: block;
+  text-align: center;
+  text-emphasis: 0;
+  font-size: 0.8em; //글씨 크기를 줄인다
+  font-style: normal; //Italics글씨체가 아닌 일반 글씨체
+  color: rgba($text-color, 0.75); //폰트색의 투명도를 낮춘다
+}

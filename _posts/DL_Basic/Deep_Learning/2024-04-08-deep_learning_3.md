@@ -1,11 +1,11 @@
 ---
-title: "[Deep Learning] 2. Linear Neural Networks for Classification"
-excerpt: "Softmax Regression 에 대해 알아보자"
+title: "[Deep Learning] 3. MLP (Multi Layer Perceptron)"
+excerpt: "Multi Layer Perceptron 에 대해 알아보자"
 
 categories: "deep_learning"
 tags:
     - deep learning
-    - Softmax Regression
+    - MLP
 toc: true  
 toc_sticky: true
 toc_label: "Contents In Page"
