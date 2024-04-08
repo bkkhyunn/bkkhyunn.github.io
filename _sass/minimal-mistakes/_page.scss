@@ -40,16 +40,19 @@ body {
     float: right;
     width: calc(100% - #{$right-sidebar-width-narrow});
     padding-right: $right-sidebar-width-narrow;
+    padding-left: 2em;
   }
 
   @include breakpoint($x-large) {
     width: calc(100% - #{$right-sidebar-width});
     padding-right: $right-sidebar-width;
+    padding-left: 2em;
   }
 
   .page__inner-wrap {
     float: left;
     margin-top: 1em;
+    padding-top: 1em;
     margin-left: 0;
     margin-right: 0;
     width: 100%;
@@ -70,10 +73,12 @@ body {
 
 .page__title {
   margin-top: 0;
-  line-height: 1;
+  line-height: 1.5;
+  font-size: $type-size-3;
 
   & + .page__meta {
     margin-top: -0.5em;
+    font-size: $type-size-6;
   }
 }
 
@@ -83,9 +88,11 @@ body {
 }
 
 .page__content {
-  h2 {
-    padding-bottom: 0.5em;
-    border-bottom: 1px solid $border-color;
+  font-size: 0.9em;
+  font-weight: normal;
+
+  h1 {
+    font-weight: bold;
   }
 
 	h1, h2, h3, h4, h5, h6 {
@@ -104,12 +111,6 @@ body {
 			opacity: 1;
 		}
 	}
-
-  p,
-  li,
-  dl {
-    font-size: 1em;
-  }
 
   /* paragraph indents */
   p {
@@ -514,10 +515,12 @@ body {
   @include breakpoint($large) {
     float: right;
     width: calc(100% - #{$right-sidebar-width-narrow});
+    padding-left: 2em;
   }
 
   @include breakpoint($x-large) {
     width: calc(100% - #{$right-sidebar-width});
+    padding-left: 2em;
   }
 
   a {

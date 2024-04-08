@@ -27,7 +27,7 @@ repository               : "bkkhyunn/bkkhyunn.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : "/assets/logo.ico/favicon.ico"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-# breadcrumbs            : false # true, false (default)
+breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
   provider               : "giscus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
@@ -203,6 +203,9 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-seo-tag
+  - jemoji
+  - jekyll-figure
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -258,12 +261,12 @@ defaults:
       type: posts
     values:
       layout: single
-      show_data: true
       author_profile: true
       read_time: false
+      show_date: true
       comments: true
       share: false
-      related: false
+      related: true
       sidebar:
         nav: "sidebar"
 
