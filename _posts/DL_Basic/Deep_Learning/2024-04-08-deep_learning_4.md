@@ -131,6 +131,9 @@ date: 2024-04-08
 
   - 정리하면, 작은 Batch Size 는 1) **일반화 성능**이 좋고, 2) 보다 **넓은 범위의 learning rate** 로 학습이 가능하며, 3) gradient noise 가 커서 sharp minimum 을 쉽게 벗어나 **flat minimum 으로 수렴**할 수 있다.
 
+  💡 딥러닝이 푸는 문제는 수학적으로 무엇일까? convex optimization 문제인 것처럼 보인다. 딥러닝은 convex optimization 을 사용하는 non-convex optimization 라고 할 수 있다. 우리의 loss-func 은 convex 가 아니다. 즉 항상 감소하는 것이 아니다. 다시 말하면 ultra high-dimensional non-convex optimization = optimal 한 포인트를 알 수 없다! 따라서 loss-func 의 minimum 값을 절대 알 수 없다. 그러나 다행히도 딥러닝에서 알려진 사실 중 하나는 **적당한 local minima** 는 아주 깊은 낮은 곳에 있는 **optimal point** 와 **그렇게 큰 차이가 있지 않다**고 알려져 있다. 따라서 1) **적당한 곳에서 optimal point 라고 여겨도 된다고 알려져 있다.** 2) **실험적으로 local 한 optima와 sharp 한 optima 중에는 flat 한 optimal point 가 훨씬 안정적인 값을 가질 확률이 높다.** 즉, **flat 한 local minima 를 찾는 것이 딥러닝**인 것이다. 위에서 내린 결론은 결국 작은 batch size 가 좋다는 것이다. 이 질문은 우리가 풀고자 하는 문제가 뭔지를 짚어내고 있다. 우리가 convex optimization(SGD, Adam) 을 사용하는 이유는, data size 가 커지면 연산속도를 고려하지 않을 수 없는데, 연산 속도를 고려했을 때 적당한 성능을 낼 수 있으면서 충분히 시간이 주어진다면 더 복잡한 optimizer 보다 부족하지 않은 것들이 SGD 계열이기 때문이다.
+  {: .notice--warning}
+
 - 실제로 최적의 성능을 얻기 위한 batch size 는 모델과 task의 특성에 따라 크게 달라지며, 학습 시간을 단축하기 위한 측면에서는 batch size 를 최대한 크게 키우면서 성능을 향상시키는 것이 훨씬 좋은 접근법이라고 볼 수 있다.
   
 - 실제적으로 모델을 학습시킬 때 loss func 을 정의하고 나면, 편미분을 구하는데 이것은 torch 등 라이브러리에서 자동 미분을 해준다. 그러면 이제 **Optimizer** 를 골라야 한다. 각각의 Optimizer가 왜 제안이 되었고 어떤 성질을 가지는 지를 알면 좋다.
