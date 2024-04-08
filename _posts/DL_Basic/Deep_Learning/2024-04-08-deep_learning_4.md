@@ -37,7 +37,7 @@ date: 2024-04-08
   - test 데이터는 어떤 방법으로든 학습에 사용되어서는 안된다.
 - ### **Bias-Variance trade off**
             
-    ![Untitled](/assets/images/DL_Basic/Untitled%206.png){: .align-center}
+    ![Untitled](/assets/images/DL_Basic/Untitled 6.png){: .align-center}
             
   - under-fitting, over-fitting 과 이어지는 개념이다.
   - **variance** 라는 것은 입력에 따라 출력이 얼마나 **일관적**으로 나오는지를 뜻한다.
@@ -47,7 +47,9 @@ date: 2024-04-08
   - **bias** 라는 것은 평균적으로 봤을 때, 출력이 많이 분산되더라도 true target 에 접근하면 bias 가 낮은 것이다.
     - bias 가 높으면 타겟과 많이 벗어나는 것.
   - 비용 함수(loss)를 최소화하는 하는 것은 3가지 파트로 나눌 수 있다. 즉 최소화 하는 것은 1가지 값인데, 이것이 3가지 컴포넌트로 이루어진 것. (bias, variance, noise)
-    ![Untitled](/assets/images/DL_Basic/Untitled%207.png)
+   
+    ![Untitled](/assets/images/DL_Basic/Untitled 7.png)
+
     - bias 와 variance 는 하나가 줄어들면 하나가 커지는 **trade-off** 관계이다.
     - bias 를 줄이면 variance가 높아질 가능성이 크다. 반대도 마찬가지.
     - 즉, 근본적으로 학습 데이터에 **noise** 가 껴있을 경우, bias 와 variance 를 둘 다 줄일 수 없는 것이 근본적 한계이다.
@@ -66,7 +68,7 @@ date: 2024-04-08
     - 여러 개의 모델을 만드는 것은 맞지만 구체적으로 잘 안되는 데이터에 대해서만 모델을 추가적으로 만들고 이 모델들을 합치는 것.
     - 이것이 독립적인 N 개의 결과를 만드는 것이 아니라, week learner(하나하나의 모델들) 들을 순차적으로 합쳐서 하나의 strong learner 를 만드는 것. 즉, 추가적인 후처리를 통해서 결과적으로 한 개의 모델이 나오게 된다.
             
-    ![Untitled](/assets/images/DL_Basic/Untitled%208.png)
+    ![Untitled](/assets/images/DL_Basic/Untitled 8.png)
             
 ## **Gradient Descent Methods**
   - **SGD**(Stochastic gradient descent)
@@ -89,6 +91,7 @@ date: 2024-04-08
     |gradient 에 대한 정확한 추정(low variance)|gradient 에 대한 noisy 한 추정(high variance)|
     |iteration 마다 많은 계산량|iteration 마다 적은 계산량|
     |빠른 학습(parellel computation에 용이하다)|느린 학습|
+    {: .align-center}
 
   - ### *Revisiting Small Batch Training for Deep Neural Networks, 2018*
     - 아래 두 식을 비교해보면, 작은 batch size 의 경우(위 식) 파라미터 공간 상에서 보다 최신 상태의 gradient 를 사용할 수 있는 반면, 큰 batch size 의 경우(아래 식)는 오래 전 상태의 gradient 를 계속 사용해야 한다.
@@ -117,7 +120,7 @@ date: 2024-04-08
   - ### *On Large-batch Training for DL: Generalization Gap and Sharp Minima, 2017*
     - **큰** Batch Size 를 활용하면 **sharp minimumr** 에 도달하게 된다. 반면에 **작은** Batch Size 는 **flat minimum** 에 도달하게 된다.
         
-    ![Untitled](/assets/images/DL_Basic/Untitled%209.png)*이렇게 생긴 loss func 을 생각 해 볼때, sharp minima는 loss func 의 작은 변화에도 민감하게 반응하기 때문에 <br> flat minima 에 비해 generalization 측면에서 훨씬 불리하다고 볼 수 있다.*
+    ![Untitled](/assets/images/DL_Basic/Untitled 9.png)*이렇게 생긴 loss func 을 생각 해 볼때, sharp minima는 loss func 의 작은 변화에도 민감하게 반응하기 때문에 <br> flat minima 에 비해 generalization 측면에서 훨씬 불리하다고 볼 수 있다.*
         
     - **Flat Minimum 에 도달**했다는 것은 train 데이터에서 잘 되면 test 에서 어느정도 잘 되는 것을 의미한다. 즉, Flat Minimum 에 도달한 모델은 일반화 성능이 좋은 것.
     - 그런데 Sharp Minimum 에 도달한 모델의 경우는 학습에서 최소값에 도달했어도 테스트에서 높은 값일 수 있다. 즉 일반화 성능이 떨어진다.
