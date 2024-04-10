@@ -1,5 +1,5 @@
 ---
-title: "[Deep Learning] 4. Optimization"
+title: "[Deep Learning] 4. Optimization (1)"
 excerpt: "Optimization 에 대해 알아보자"
 
 categories: "deep_learning"
@@ -27,6 +27,9 @@ date: 2024-04-08
 - ### **Under fitting vs. over-fitting**
   - 학습 데이터에서는 잘 동작하지만 테스트 데이터에서 잘 동작하지 않는 것이 over-fitting 혹은 과적합이라고 한다.
   - 네트워크의 구조가 간단하거나 학습이 부족한 이유로, 학습 데이터 조차 잘 못 맞추는 것이 under-fitting 이다.
+  - 모델이 학습 데이터에 너무 완벽하게 맞춰짐으로써 training error가 0이 되었을때, over-fitting 되었다고 표현한다. over-fitting 은 모델이 상당히 복잡하게 구성되어있는데, 학습 데이터를 표현하는 정보가 적을때 즉 학습데이터가 단순할 때 발생한다.
+  - 이와 반대 현상은 under-fitting 이라고 하는데, 모델은 단순하고 학습 데이터를 표현하는 정보가 너무 많을 때 단순한 모델이 많은 정보들을 학습할 수가 없어서 under-fitting 이 되는 것이다.
+  - 이렇게 **모델의 Complexity 와 데이터를 표현하는 정보의 규모가 서로 매칭되지 않을 때 under-fitting, over-fitting 이 일어나는 것을 Bad generalization** 이다.
 - ### **Cross Validation**
   - 학습 데이터를 다시 train data - validation data 로 나누는 것.
   - train data 로 학습 시킨 모델이 validation data 기준으로 얼마나 잘되는 지를 판단한다.
