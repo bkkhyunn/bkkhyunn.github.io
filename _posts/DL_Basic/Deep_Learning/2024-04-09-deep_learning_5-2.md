@@ -1,5 +1,5 @@
 ---
-title: "[Deep Learning] 4. Optimization (2)"
+title: "[Deep Learning] 5. Optimization (2)"
 excerpt: "Optimization 특히 Regularization 에 대해서 알아보자"
 
 categories: "deep_learning"

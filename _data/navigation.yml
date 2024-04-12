@@ -84,6 +84,9 @@ sidebar:
       - title: "Network"
         url: /categories/network
         category: "network"
+      - title: "Data Structure & Algorithm"
+        url: /categories/data_structure-algorithm
+        category: "data_structure-algorithm"
 
   - title: TroubleShooting
     children:
