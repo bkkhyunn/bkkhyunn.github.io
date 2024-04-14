@@ -75,7 +75,7 @@ date: 2024-04-08
             
 ## **Gradient Descent Methods**
   - **SGD**(Stochastic gradient descent)
-    - 내가 찾고자 하는 파라미터(최적의 파라미터) 를 찾기 위해서는 정해진 Step size(lr rate) 만큼 파라미터를 업데이트하는 과정을 여러번 반복해야 하는데, 이 경우 gradient 를 정확히 계산할 수는 있지만 전체 데이터에 대한 loss func 을 매 iteration 마다 계산해야 하기 떄문에 엄청난 계산량이 필요하다.
+    - 내가 찾고자 하는 파라미터(최적의 파라미터) 를 찾기 위해서는 정해진 Step size(lr rate) 만큼 파라미터를 업데이트하는 과정을 여러번 반복해야 하는데, 이 경우 gradient 를 정확히 계산할 수는 있지만 전체 데이터에 대한 loss func 을 매 iteration 마다 계산해야 하기 때문에 엄청난 계산량이 필요하다.
     - 이를 개선한 방법으로, 한번의 iteration 에 single sample 로 가중치를 업데이트 한다.
   - **Mini-batch gradient descent**
     - 일반적으로 말하는 batch size 를 활용해서 gradient를 구하고 이것을 가지고 가중치를 업데이트 한다.
