@@ -63,16 +63,21 @@ date: 2024-04-09
           
   #### Label smoothing
   - data augmentation 과 비슷한데 차이점은, 학습 단계에서 가지고 있는 학습 데이터 2개를 뽑아서 섞어 주는 것이다.
-  - 일반적인 분류문제에서는 이미지가 존재하는 공간에서 decision boundary 를 찾고자 한다. 즉 2개의 클래스를 잘 구분할 수 있는 이미지 공간 속에서의 경계를 찾아서 이것을 가지고 분류가 잘 되게 하는 것이 목적이다. 이 decision boundary 를 부드럽게 만들어 주는 것.
+  - 일반적인 분류문제에서는 이미지가 존재하는 공간에서 decision boundary 를 찾고자 한다. 즉 2개의 클래스를 잘 구분할 수 있는 이미지 공간 속에서의 경계를 찾아서 이것을 가지고 분류가 잘 되게 하는 것이 목적이다.
+  - Label Smoothing 은 decision boundary 를 부드럽게 만들어 주는 것이다. 그렇게 함으로써 
 
   ![Untitled](/assets/images/DL_basic/Untitled%2022.png){: .align-center}
 
     - Mixup 은 두 개의 이미지를 고른 다음에 그 두 개의 이미지 뿐 아니라 label 도 같이 섞는다.
     - Cutout 은 이미지 한 장에서 일정 영역을 떼버리는 기법.
     - CutMix 는 Cutout 처럼 일정부분을 떼고 다른 이미지를 섞어주는데, 섞어줄 때 Mixup 처럼 블렌딩하는 게 아니라 특정 영역이 나뉜다.
-  - 위 기법들은 data augmentation 기법에 속한다. 위 기법들을 사용하면 성능이 많이 올라간다. 데이터셋이 한정적이고 더 얻을 방법이 없다면 위 방법론을 활용해보는 것이 좋다. 들인 노력 대비 성능을 올릴 수 있기 때문이다.
+  - 위 기법들은 data augmentation 기법에 속한다. 위 기법들을 사용하면 성능이 올라간다고 알려져 있다. 따라서 데이터셋이 한정적이고 더 얻을 방법이 없다면 위 방법론을 활용해보는 것이 좋다. 들인 노력 대비 성능을 올릴 수 있기 때문이다.
 
 - 일반적인 label smoothing 과 Mixup/CutMix의 차이점은, 전자는 기존 학습 데이터의 label 을 조정(1.0->0.9)하는데 그치는 반면, 후자는 다수의 샘플을 결합해서 새로운 레이블과 새로운 데이터까지 생성한다는 데에서 차이점이 있다. Hard labeling 방식의 “확신에 찬” 예측이 초래하는 문제를 완화시키기 위해 이와 같은 증강 기법을 활용할 수 있다.
+
+### When Dose Label Smoothing help? (2019, NeuralPS)
+- Label Smoothing 은 Regularization 테크닉 가운데 하나로 간단한 방법이면서도 모델의 일반화 성능을 높여 주목을 받았지만, 내부 작동 원리 등에 대해서는 거의 밝혀진 바가 없이 ‘해봤더니 그냥 잘 되더라’ 정도였다. 제프리 힌튼 교수의 연구팀이 2019 NeuraIPS에 제출한 When Does Label Smoothing Help? 논문은 Label Smoothing 이 언제 잘 되고 그 이유에 대해 고찰하는 논문이다.
+- 
         
 ### Dropout
 - 뉴럴 네트워크 weight 를 0으로 바꾸는 것. dropout ratial($p$) 가 0.5 면 뉴럴 네트워크가 Inference 할 때 외에는 뉴런의 50% 를 layer 마다 0으로 바꿔준다.
@@ -147,5 +152,6 @@ date: 2024-04-09
 
 ## Reference
 
-https://deepapple.tistory.com/6
-https://cvml.tistory.com/6
+https://deepapple.tistory.com/6<br>
+https://cvml.tistory.com/6<br>
+https://ratsgo.github.io/insight-notes/docs/interpretable/smoothing
