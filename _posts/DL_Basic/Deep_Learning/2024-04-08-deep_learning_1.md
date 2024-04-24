@@ -89,10 +89,10 @@ c = torch.zeros(n)
 t = time.time()
 for i in range(n):
     c[i] = a[i] + b[i]
-f'for loop: {time.time() - t:.5f} sec'
+print(f'for loop: {time.time() - t:.5f} sec')
 t = time.time()
 d = a + b
-f'vectorization {time.time() - t:.5f} sec'
+print(f'vectorization {time.time() - t:.5f} sec')
 ```
 ```python
 'for loop: 0.17802 sec'

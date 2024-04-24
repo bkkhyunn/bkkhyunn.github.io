@@ -16,7 +16,6 @@ use_math: true
 
 date: 2024-04-08
 ---
-
 앞에서 다룬 Linear Regression 과 Linear Classification 이 엄밀히 딥러닝의 하위분야는 아니지만, 전통적인 머신러닝 방식이고 이를 이해하면 딥러닝에 대한 한층 더 심도있는 이해를 할 수 있다. 따라서 여기서는 전 포스트에 이어 Linear Classification 을 정리해보자.<br>
 Computer Vision 분야의 Image Classification 뿐만 아니라, Object Detection 이나 Segmentation 도 결국에는 **분류**다. 물론 Object Detection 에서는 물체의 위치를 regression 으로 예측하지만, 그 안에 있는 class 에 대해서는 classification 을 통해 결과가 나온다. 따라서 앞으로의 무궁무진한 Classification 을 이해하기 위해서 반드시 정복하고 가자.
 
@@ -50,6 +49,7 @@ Computer Vision 분야의 Image Classification 뿐만 아니라, Object Detectio
 
 ## Logistic Regression
 - 예컨대 여자/남자를 분류하거나 참/거짓을 분류하는 문제는 $y \in \lbrace 0, 1 \rbrace$ 이라고 할 수 있다. 이러한 이진 분류는 Logistic Regression 을 사용한다.
+    <center>$\hat{y} = \mathbf{W}\mathbf{x} + \epsilon, \; \hat{y} = 0 \; \text{or} \; 1$</center>
 - Logistic Regression 도 구성 자체는 Linear Regression 과 크게 다르지 않다.
 ![Untitled](/assets/images/DL_basic/logistic.png){: .align-center}*출처: https://kh-kim.github.io/*
 - 위 그림에서 보이는 $\sigma$ 는 **Sigmoid** 함수를 뜻한다. 즉 활성화 함수로 Sigmoid(Logistic) function 을 사용한다. 활성화 함수는 이 [포스트](https://bkkhyunn.github.io/deep_learning/deep_learning_4/)에서 자세히 정리한다.
@@ -63,12 +63,60 @@ Computer Vision 분야의 Image Classification 뿐만 아니라, Object Detectio
 ![Untitiled](/assets/images/DL_basic/sigmoid.png){: .align-center}*Sigmoid 혹은 Logistic function 그래프. 출처: cs229 lecture note*
 - Sigmoid 를 수식으로 보면 다음과 같다.
     <center>$\sigma(x) = \displaystyle\frac{1}{1+e^{-x}}$</center>
-- Sigmoid 함수는 +∞로 갈 경우 1, -∞로 갈 경우 0 이다. 또한 0.5를 기준으로 참과 거짓을 판단할 수 있다. 만약 출력 벡터의 어떤 요소의 값이 0.5 보다 같거나 클 경우 해당 요소에서 참을 예측했다고 결론지을 수 있으며, 반대로 0.5보다 작을 경우 거짓을 예측했다고  결론내릴 수 있다.
-- Sigmoid 미분은 아래와 같이 유도될 수 있다.
-- 이를 인공 신경망에서 입력값과 가중치가 연산되어 들어온다고 보면 다음과 같다.
+- 수식과 그래프를 보면, Sigmoid 함수는 +∞로 갈 경우 1 이고 -∞로 갈 경우 0 이다. 또한 0.5를 기준으로 참과 거짓을 판단할 수 있다. 만약 출력 벡터의 어떤 요소의 값이 0.5 보다 같거나 클 경우 해당 요소에서 참을 예측했다고 결론지을 수 있으며, 반대로 0.5보다 작을 경우 거짓을 예측했다고 결론내릴 수 있다.
+- **Sigmoid 미분**은 아래와 같이 유도될 수 있다.
+  - 먼저 분수의 미분은 다음처럼 유도된다.<br>
+
+    <center>$\displaystyle\frac{1}{g(x)^\prime} = \lim_{h\rightarrow0}\frac{\frac{1}{g(x+h)} - \frac{1}{g(x)}}{h} = \lim_{h\rightarrow0}\frac{\frac{g(x)-g(x+h)}{g(x+h)g(x)}}{h} = \displaystyle\lim_{h\rightarrow0}-\frac{g(x+h)-g(x)}{hg(x+h)g(x)} \\ = \displaystyle\lim_{h\rightarrow0}-\frac{g(x)^\prime}{g(x+h)g(x)} = \displaystyle-\frac{g(x)^\prime}{g(x)^2}$</center>
+  - 또한 지수의 미분법은 다음처럼 유도된다.<br>
+
+    <center>$f(x) = e^{\alpha x}, \; f^\prime(x)=e^{\alpha x}\cdot(\alpha x)^\prime$</center>
+  - 이를 활용하여 Sigmoid 함수를 미분하면,<br>
+
+    <center>$\sigma(x)^\prime = \displaystyle-\frac{(1+e^{-x})^\prime}{(1+e^{-x})^2} = -\frac{e^{-x}\cdot(-1)}{(1+e^{-x})(1+e^{-x})} = \frac{1 - 1 + e^{-x}}{(1+e^{-x})(1+e^{-x})} \\
+    = \displaystyle\frac{1}{1+e^{-x}}\cdot\frac{-1 + e^{-x}}{1+e^{-x}} = \sigma(x)(1 - \sigma(x))$</center>
+
+  - 즉 Sigmoid 함수를 미분하면 자기 자신과 1에서 자기자신을 뺀 값을 곱한 것과 같다.
+- 이제 **Logistic Regression 모델을 어떻게 최적화** 시키는지 알아보자.
+    
+    <center>$\hat{y} = \mathbf{W}\mathbf{x} + \epsilon, \; \hat{y} = 0 \; \text{or} \; 1$</center>
+
+- Linear Regression 에서는 오차항이 정규분포를 이룬다는 가정으로 $\hat{y}$ 도 정규분포를 이룬다고 할 수 있었다. Logistic Regression 에서는 어떨까?
+  - Logistic Regression 은 $\hat{y}$ 값이 정규분포를 따르지 않는다. $\hat{y}$ 는 범주형 이기 때문이다.
+  - Logistic Regression 은 $\hat{y}$ 값이 **베르누이 분포**의 형태를 띈다.
+  - 결과가 두 가지 중 하나로만 나오는 실험이나 시행을 베르누이 시행(Bernoulli trial)이라고 한다. 이 때 베르누이 시행의 결과를 실수 0 또는 1로 바꾼 것을 **베르누이 확률변수(Bernoulli random variable)**라고 한다. 베르누이 확률변수는 두 값 중 하나만 가질 수 있으므로 이산확률변수(discrete random variable)다.
+  - 베르누이 분포의 확률질량함수는 다음과 같다. 1이 나올 확률을 의미하는 $\mu$ 라는 파라미터(모수)를 가지며 0이 나올 확률은 $1-\mu$ 이다.
+  ![Untitled](/assets/images/DL_basic/bern.png){: .align-center}
+  
+    <center>$\text{Bern}(x;\mu) = \mu^x(1-\mu)^{(1-x)}$</center>
+
+    💡 왜 베르누이 분포를 가정할까?<br>
+    Linear Regression 에서 정규분포를 가정한 것처럼, Logistic Regression 또한 유한한 개수의 데이터만 관찰해서 모집단의 분포를 정확하게 알아내는 것이 불가능하여 **근사적으로 확률분포를 추정할 수 밖에 없다.** 그러나 Logistic Regression 의 $y$ 는 범주형이기 때문에 정규분포를 가정할 수 없다. 이러한 이유로 **베르누이 분포**를 가정한다.<br>
+    **성공확률이 𝜇** 인 베르누이 시행을 𝑁 번 반복하는 경우, **𝑁 번 중 성공한 횟수를 확률변수 𝑋**라고 한다면 𝑋의 값은 0 부터 𝑁 까지의 정수 중 하나가 될 것이다. 이런 확률변수를 **이항분포(binomial distribution)**를 따르는 확률변수라고 한다. 이항분포 확률변수 𝑋의 확률질량함수는 𝑁개의 표본 값이 모두 0(실패) 아니면 1(성공)이라는 값을 가지기 때문에 **𝑁 번 중 성공한 횟수는 𝑁 개의 표본값의 합**이 된다.<br>
+    즉 베르누이 확률변수를 전체 시행 횟수만큼 더하면 이항분포의 확률변수가 된다. 여기서, **이항 분포는 시행횟수 𝑁 이 커질수록 Gaussian 의 가까운 형태가 된다.** 그러면 베르누이 확률변수를 전체 시행 횟수만큼 더하면 이항분포이기 때문에 베르누이 확률변수의 합은 **정규분포**(Gaussian)로 근사된다는 것이다!<br>
+    그렇게 되면 Linear Regression 처럼 정규분포를 가정할 수는 없어도 정규분포에 근사할 수 있는 베르누이 분포를 가정함으로써, "실제값은 내 예측값일 확률이 가장 높지만, 아닐 수도 있다!" 라고 말할 수 있는 것이다!
+    {: .notice--warning}
+
+  - 또한 Logistic Regression 에서는 $\epsilon$ 의 평균이 0 이라는 가정을 가지고 있다.
+- 먼저 Logistic Regression 인공 신경망에서 입력값과 가중치가 연산되어 들어온다고 보면 Sigmoid 함수는 다음과 같다.<br>
+
     <center>$h_\theta(x) = g(\theta^Tx) = \displaystyle\frac{1}{1+e^{-\theta^Tx}}$</center>
-- 이제 Logistic Regression 은 이진 분류(binary classification)에서 사용되고 $y \in \lbrace 0, 1 \rbrace$ 이라고 했으므로,
-    <center>
+
+- 이제 Logistic Regression 은 이진 분류(binary classification)에서 사용되고 $y \in \lbrace 0, 1 \rbrace$ 이라고 했으므로, 아래와 같이 가정할 수 있다. 이는 **베르누이 분포**이다.<br>
+
+    <center>$P(y=1 \mid x;\theta) = h_\theta(x)$</center> 
+    <center>$P(y=0 \mid x;\theta) = 1-h_\theta(x)$</center>
+
+- 이 두 수식을 합쳐 아래와 같은 가능도 함수를 만들 수 있다. $y$ 에 0 과 1 을 대입해보면 알 수 있다.<br>
+
+    <center>$p(y|x;\theta) = (h_\theta(x))^y(1-h_\theta(x))^{1-y}$</center>
+
+- 위 식을 가지고 Linear Regression 에서 했던 것처럼 Maximum Likelihood Estimation 을 진행할 수 있다. **Log Likelihood** 가 최대값이 되는 지점을 찾기 위해 로그 가능도 함수를 미분하면 아래와 같다.
+
+    <center>$l(\theta) = \displaystyle\sum_{i=1}^ny^{(i)}logh(x^{(i)})+(1-y^{(i)})log(1-h(x^{(i)}))$</center>
+    ![Untitled](/assets/images/DL_basic/logisticMLE.png){: .align-center}*chain rule 이 사용된다.*
+
+- 여기서 차이점이 있다면 log likelihood + MSE (Minimize) 와 log likelihood (Maximize)사용의 차이, Linear Regression에서도 Maximize를 했다고 볼 순 있으나, J(θ)를 0으로 수렴시키기 위해 hθ(x) - y를 0으로 minimize시키려 했다.
 - Logistic Regression 의 Loss function(Cost function)은 기존 Linear Regression 의 MSE 와 다른 함수를 사용한다. 선형 회귀와 마찬가지로 손실값을 가중치 파라미터로 미분하게 되면, 손실값이 낮아지는 방향으로 경사하강법을 수행할 수 있다. 아래에서 살펴볼 것이다.
 
 ## Softmax Regression
@@ -90,10 +138,15 @@ Computer Vision 분야의 Image Classification 뿐만 아니라, Object Detectio
 
 ## Logit, Sigmoid, Softmax 의 관계
 
+## Exponential Family
+
 ## Loss function(Cross Entropy)
-- 
+- Classification 에서 사용되는 Loss function 에 대해 알아보자.
+
 ### Binary Cross Entropy
+- 
 
 ### Cross Entropy
+- 
 
 ## Information Theory
