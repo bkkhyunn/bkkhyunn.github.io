@@ -14,6 +14,7 @@ author_profile: true
 use_math: true
 date: 2024-04-22
 ---
+네이버 부스트캠프에서 들었던 특강으로 공부했던 내용을 정리해보자.
 
 ## HPC
 - HPC 란 High Performane Computing 의 약자로, 많은 뜻이 담겨 있지만 딥러닝에서 중요한 의미를 가진 것은 **복잡한 계산을 병렬로 고속 처리하는 것**이다.
