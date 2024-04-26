@@ -1,6 +1,6 @@
 ---
 title: "[Deep Learning] 2. Linear Neural Networks for Classification"
-excerpt: "Softmax Regression 에 대해 알아보자"
+excerpt: "Logistic Regression, Softmax Regression 에 대해 자세히 알아보자"
 
 categories: "deep_learning"
 tags:
