@@ -16,7 +16,7 @@ date: 2024-06-25
 ---
 
 ## 완전탐색 알고리즘(Brute Force Algorithm)
-![Untitled](/assets/images/DS&Algorithm/Untitled.png)
+![Untitled](/assets/images/DS&Algorithm/Untitled.png){: .align-center}
 - 완전탐색은 가능한 경우의 수를 모두 검사해보는 탐색 방법이다.
   - 모든 경우의 수를 고려하지 않고 더 이상 탐색이 필요 없는 경우 그 루트를 끊어버리는 것은 미완전 탐색이다.
   - 예를 들어서 재귀함수가 모든 경우의 수를 탐색하다 결과를 찾아서 탐색을 중지하는 경우처럼 루트를 끊는 경우를 가지치기(Pruning)라고 한다. 이를 수행하면 불필요한 탐색을 줄일 수 있다.
