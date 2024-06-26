@@ -1,6 +1,6 @@
 ---
 title: "[Algorithm] 6. Binary Search"
-excerpt: "아진탐색 알고리즘에 대해 알아보자"
+excerpt: "이진탐색 알고리즘에 대해 알아보자"
 
 categories: "data_structure-algorithm"
 tags:
