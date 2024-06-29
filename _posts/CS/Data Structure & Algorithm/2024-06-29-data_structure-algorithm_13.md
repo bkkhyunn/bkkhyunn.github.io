@@ -55,7 +55,7 @@ date: 2024-06-29 13:00
 - 트리의 정보를 시각적으로 확인할 수 있다. 따라서 트리 자료구조를 코드로 구현할 때 트리의 순회도 같이 구현해서 사용하는 경우가 많다.
 - 대표적인 트리 순회의 방법
     
-    ![Untitled](/assets/images/DS&Algorithm/segtree.png){: .align-center}
+    ![Untitled](/assets/images/DS&Algorithm/Untitled%2042.png){: .align-center}
     
   - **전위 순회(pre-order traverse)** : 루트(자기 자신)를 먼저 방문(출력)한다. 이후 왼쪽, 오른쪽 차례로 방문을 진행한다.
   - **중위 순회(in-order traverse)** : 왼쪽 자식을 방문한 뒤에 루트(자기 자신)를 방문한다. 이후 오른쪽 노드를 방문한다.
